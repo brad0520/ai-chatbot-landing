@@ -23,7 +23,10 @@ export default function ChatBot() {
   }
 
   useEffect(() => {
-    scrollToBottom()
+    // 메시지가 2개 이상일 때만 스크롤 (초기 봇 메시지 1개는 제외)
+    if (messages.length > 1) {
+      scrollToBottom()
+    }
   }, [messages])
 
   const handleSendMessage = () => {
