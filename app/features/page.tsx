@@ -65,7 +65,7 @@ export default function FeaturesPage() {
       details: [
         '웹사이트 위젯',
         '모바일 앱 SDK',
-        '카카오톡/라인 연동',
+        '메신저 연동',
         '페이스북 메신저',
       ],
     },

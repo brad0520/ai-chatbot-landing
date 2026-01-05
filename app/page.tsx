@@ -1,10 +1,20 @@
 import Header from '@/components/Header'
 import ChatBot from '@/components/ChatBot'
 import Footer from '@/components/Footer'
+import Image from 'next/image'
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-purple-600 via-violet-600 to-purple-700">
+    <main className="min-h-screen relative">
+      <Image
+        src="/images/hero.jpg"
+        alt="Background"
+        fill
+        className="object-cover"
+        priority
+      />
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-600/90 via-violet-600/90 to-purple-700/90"></div>
+      <div className="relative z-10">
       <Header />
       <ChatBot />
 
@@ -99,6 +109,7 @@ export default function HomePage() {
       </section>
 
       <Footer />
+      </div>
     </main>
   )
 }

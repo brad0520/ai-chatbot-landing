@@ -37,7 +37,7 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:block">
+            <nav className="hidden lg:block">
               <ul className="flex space-x-8">
                 <li>
                   <Link
@@ -86,7 +86,7 @@ export default function Header() {
               {/* Desktop CTA Button */}
               <Link
                 href="/demo"
-                className="hidden md:block bg-white text-purple-600 px-6 py-2.5 rounded-full font-semibold hover:bg-white/90 hover:shadow-lg transition-all"
+                className="hidden lg:block bg-white text-purple-600 px-6 py-2.5 rounded-full font-semibold hover:bg-white/90 hover:shadow-lg transition-all"
               >
                 무료 체험
               </Link>
@@ -94,7 +94,7 @@ export default function Header() {
               {/* Mobile Hamburger Button */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden p-2"
+                className="lg:hidden p-2"
                 aria-label="Toggle menu"
               >
                 <div className="w-6 h-5 flex flex-col justify-between">
@@ -110,7 +110,7 @@ export default function Header() {
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-40 md:hidden" style={{ top: '70px' }}>
+        <div className="fixed inset-0 z-40 lg:hidden" style={{ top: '70px' }}>
           <div className="absolute inset-0 bg-purple-900/95 backdrop-blur-xl" onClick={() => setIsMenuOpen(false)}>
             <nav className="px-6 py-8">
               <ul className="space-y-4">
