@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import Image from 'next/image'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -25,154 +26,175 @@ export default function ContactPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-purple-600 via-violet-600 to-purple-700">
-      <Header />
+    <main className="min-h-screen relative">
+      {/* Background Image */}
+      <Image
+        src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920&q=80"
+        alt="현대적 사무실 배경"
+        fill
+        className="object-cover opacity-15"
+        priority
+      />
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/90 via-violet-800/85 to-purple-900/95" />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-            문의하기
-          </h1>
-          <p className="text-xl text-white/80 max-w-3xl mx-auto">
-            궁금하신 점이 있으신가요? 언제든지 연락주세요
-          </p>
-        </div>
-      </section>
+      <div className="relative z-10">
+        <Header />
 
-      {/* Contact Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Left: Contact Info */}
-            <div>
-              <h2 className="text-3xl font-bold text-white mb-8">
-                연락처 정보
-              </h2>
+        {/* Hero Section */}
+        <section className="pt-32 pb-20 px-6">
+          <div className="max-w-7xl mx-auto text-center">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+              문의하기
+            </h1>
+            <p className="text-xl text-white/80 max-w-3xl mx-auto">
+              궁금하신 점이 있으신가요? 언제든지 연락주세요
+            </p>
+          </div>
+        </section>
 
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="text-4xl">📧</div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-white mb-1">
-                      이메일
-                    </h3>
-                    <p className="text-white/80">contact@chatbotpro.com</p>
-                    <p className="text-white/80">support@chatbotpro.com</p>
+        {/* Contact Section */}
+        <section className="py-20 px-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12">
+              {/* Left: Contact Info */}
+              <div>
+                <h2 className="text-3xl font-bold text-white mb-8">
+                  연락처 정보
+                </h2>
+
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="text-4xl">📧</div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-white mb-1">
+                        이메일
+                      </h3>
+                      <p className="text-white/80">contact@chatbotpro.com</p>
+                      <p className="text-white/80">support@chatbotpro.com</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="text-4xl">📞</div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-white mb-1">
+                        전화
+                      </h3>
+                      <p className="text-white/80">02-1234-5678</p>
+                      <p className="text-white/60 text-sm">평일 09:00 - 18:00</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="text-4xl">📍</div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-white mb-1">
+                        주소
+                      </h3>
+                      <p className="text-white/80">
+                        서울특별시 강남구 테헤란로 123
+                        <br />
+                        테크빌딩 10층
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="text-4xl">📞</div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-white mb-1">
-                      전화
-                    </h3>
-                    <p className="text-white/80">02-1234-5678</p>
-                    <p className="text-white/60 text-sm">평일 09:00 - 18:00</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="text-4xl">📍</div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-white mb-1">
-                      주소
-                    </h3>
-                    <p className="text-white/80">
-                      서울특별시 강남구 테헤란로 123
-                      <br />
-                      테크빌딩 10층
-                    </p>
+                {/* Office Image instead of Map Placeholder */}
+                <div className="mt-8 relative h-64 rounded-2xl overflow-hidden">
+                  <Image
+                    src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80"
+                    alt="ChatBot Pro 사무실"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-purple-900/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4 text-white/80 text-sm">
+                    서울 강남구 테헤란로 123 테크빌딩
                   </div>
                 </div>
               </div>
 
-              {/* Map Placeholder */}
-              <div className="mt-8 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-4 h-64 flex items-center justify-center">
-                <p className="text-white/60">🗺️ Google Maps</p>
+              {/* Right: Contact Form */}
+              <div>
+                <h2 className="text-3xl font-bold text-white mb-8">
+                  메시지 보내기
+                </h2>
+
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div>
+                    <label className="block text-white font-medium mb-2">
+                      이름 *
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-400 backdrop-blur-lg"
+                      placeholder="홍길동"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-white font-medium mb-2">
+                      이메일 *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-400 backdrop-blur-lg"
+                      placeholder="example@email.com"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-white font-medium mb-2">
+                      회사명
+                    </label>
+                    <input
+                      type="text"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-400 backdrop-blur-lg"
+                      placeholder="테크코프"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-white font-medium mb-2">
+                      문의 내용 *
+                    </label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={6}
+                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-400 backdrop-blur-lg resize-none"
+                      placeholder="문의하실 내용을 입력해주세요..."
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-white/90 hover:shadow-lg transition-all"
+                  >
+                    메시지 전송
+                  </button>
+                </form>
               </div>
-            </div>
-
-            {/* Right: Contact Form */}
-            <div>
-              <h2 className="text-3xl font-bold text-white mb-8">
-                메시지 보내기
-              </h2>
-
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label className="block text-white font-medium mb-2">
-                    이름 *
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-400 backdrop-blur-lg"
-                    placeholder="홍길동"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-white font-medium mb-2">
-                    이메일 *
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-400 backdrop-blur-lg"
-                    placeholder="example@email.com"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-white font-medium mb-2">
-                    회사명
-                  </label>
-                  <input
-                    type="text"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-400 backdrop-blur-lg"
-                    placeholder="테크코프"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-white font-medium mb-2">
-                    문의 내용 *
-                  </label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={6}
-                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-400 backdrop-blur-lg resize-none"
-                    placeholder="문의하실 내용을 입력해주세요..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-white/90 hover:shadow-lg transition-all"
-                >
-                  메시지 전송
-                </button>
-              </form>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <Footer />
+        <Footer />
+      </div>
     </main>
   )
 }
