@@ -11,7 +11,7 @@ export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       type: 'bot',
-      content: '안녕하세요! 무엇을 도와드릴까요? 😊',
+      content: '안녕하세요! 무엇을 도와드릴까요?',
     },
   ])
   const [inputValue, setInputValue] = useState('')
@@ -23,7 +23,6 @@ export default function ChatBot() {
   }
 
   useEffect(() => {
-    // 메시지가 2개 이상일 때만 스크롤 (초기 봇 메시지 1개는 제외)
     if (messages.length > 1) {
       scrollToBottom()
     }
@@ -32,7 +31,6 @@ export default function ChatBot() {
   const handleSendMessage = () => {
     if (!inputValue.trim()) return
 
-    // 사용자 메시지 추가
     const userMessage: Message = {
       type: 'user',
       content: inputValue,
@@ -40,7 +38,6 @@ export default function ChatBot() {
     setMessages((prev) => [...prev, userMessage])
     setInputValue('')
 
-    // 봇 응답 시뮬레이션
     setIsTyping(true)
     setTimeout(() => {
       const botResponse: Message = {
@@ -63,7 +60,7 @@ export default function ChatBot() {
     } else if (lowerInput.includes('연락') || lowerInput.includes('문의')) {
       return '문의는 contact@chatbotpro.com 또는 02-1234-5678로 연락주세요!'
     } else {
-      return '더 자세한 내용은 관련 페이지를 참고하시거나, 구체적인 질문을 해주세요! 😊'
+      return '더 자세한 내용은 관련 페이지를 참고하시거나, 구체적인 질문을 해주세요!'
     }
   }
 
@@ -80,38 +77,47 @@ export default function ChatBot() {
   }
 
   return (
-    <section className="min-h-screen pt-32 pb-20 px-6">
+    <section className="py-20 px-6">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-lg border border-stone-200 overflow-hidden">
           {/* Chat Header */}
-          <div className="bg-gradient-to-r from-purple-600 to-violet-600 p-6 text-white">
-            <div className="text-2xl font-bold mb-2">안녕하세요! 👋</div>
-            <div className="text-purple-100">궁금한 것이 있으시면 언제든 물어보세요</div>
+          <div className="bg-teal-600 p-6 text-white">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+              </div>
+              <div>
+                <div className="text-lg font-bold">ChatBot Pro 체험</div>
+                <div className="text-teal-100 text-sm">궁금한 것이 있으시면 언제든 물어보세요</div>
+              </div>
+            </div>
           </div>
 
           {/* Chat Messages */}
-          <div className="h-[500px] overflow-y-auto p-6 space-y-4">
+          <div className="h-[400px] overflow-y-auto p-6 space-y-4 bg-stone-50">
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={`flex items-start gap-3 ${
+                className={`flex items-end gap-3 ${
                   message.type === 'user' ? 'flex-row-reverse' : ''
                 }`}
               >
                 <div
-                  className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-xl ${
+                  className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm ${
                     message.type === 'bot'
-                      ? 'bg-purple-500'
-                      : 'bg-white/20'
+                      ? 'bg-teal-600 text-white'
+                      : 'bg-stone-300 text-stone-600'
                   }`}
                 >
-                  {message.type === 'bot' ? '🤖' : '😊'}
+                  {message.type === 'bot' ? 'AI' : 'U'}
                 </div>
                 <div
-                  className={`max-w-[70%] rounded-2xl px-4 py-3 ${
+                  className={`max-w-[70%] px-4 py-3 text-sm leading-relaxed ${
                     message.type === 'bot'
-                      ? 'bg-white/90 text-gray-800'
-                      : 'bg-purple-500 text-white'
+                      ? 'chat-bubble-ai'
+                      : 'chat-bubble-user'
                   }`}
                 >
                   {message.content}
@@ -120,15 +126,15 @@ export default function ChatBot() {
             ))}
 
             {isTyping && (
-              <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-xl">
-                  🤖
+              <div className="flex items-end gap-3">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-teal-600 text-white flex items-center justify-center text-sm">
+                  AI
                 </div>
-                <div className="bg-white/90 rounded-2xl px-4 py-3">
+                <div className="chat-bubble-ai px-4 py-3">
                   <div className="flex gap-1">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                    <div className="w-2 h-2 bg-teal-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <div className="w-2 h-2 bg-teal-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <div className="w-2 h-2 bg-teal-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                   </div>
                 </div>
               </div>
@@ -138,14 +144,14 @@ export default function ChatBot() {
           </div>
 
           {/* Quick Actions */}
-          <div className="p-4 border-t border-white/10">
-            <div className="text-white/70 text-sm mb-3">빠른 질문:</div>
+          <div className="p-4 border-t border-stone-200 bg-white">
+            <div className="text-stone-500 text-xs mb-2">빠른 질문:</div>
             <div className="flex flex-wrap gap-2">
               {quickActions.map((action, index) => (
                 <button
                   key={index}
                   onClick={() => handleQuickAction(action.query)}
-                  className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full text-sm transition-all"
+                  className="px-3 py-1.5 bg-teal-50 hover:bg-teal-100 text-teal-700 rounded-full text-xs font-medium transition-colors border border-teal-200"
                 >
                   {action.label}
                 </button>
@@ -154,7 +160,7 @@ export default function ChatBot() {
           </div>
 
           {/* Chat Input */}
-          <div className="p-6 border-t border-white/10">
+          <div className="p-4 border-t border-stone-200 bg-white">
             <div className="flex gap-3">
               <input
                 type="text"
@@ -162,13 +168,17 @@ export default function ChatBot() {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                 placeholder="메시지를 입력하세요..."
-                className="flex-1 bg-white/10 border border-white/20 rounded-full px-6 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                className="flex-1 bg-stone-100 border border-stone-200 rounded-full px-5 py-3 text-stone-900 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent text-sm"
               />
               <button
                 onClick={handleSendMessage}
-                className="bg-gradient-to-r from-purple-500 to-violet-500 hover:from-purple-600 hover:to-violet-600 text-white px-6 py-3 rounded-full font-semibold transition-all flex items-center gap-2"
+                className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-full font-semibold transition-colors flex items-center gap-2 text-sm"
               >
-                📤 전송
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="22" y1="2" x2="11" y2="13"/>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+                전송
               </button>
             </div>
           </div>

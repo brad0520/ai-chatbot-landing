@@ -21,86 +21,60 @@ export default function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-white/10 backdrop-blur-xl shadow-lg'
-            : 'bg-white/5 backdrop-blur-lg'
-        } border-b border-white/20`}
+            ? 'bg-white shadow-md'
+            : 'bg-white/80 backdrop-blur-md'
+        } border-b border-stone-100`}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center h-[70px]">
-            {/* Logo */}
             <Link
               href="/"
-              className="text-2xl font-bold text-white flex items-center gap-2"
+              className="text-2xl font-bold text-teal-700 flex items-center gap-2"
             >
-              <span className="text-3xl animate-bounce">🤖</span>
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" className="text-teal-600">
+                <rect width="32" height="32" rx="10" fill="currentColor"/>
+                <path d="M10 12C10 10.8954 10.8954 10 12 10H20C21.1046 10 22 10.8954 22 12V18C22 19.1046 21.1046 20 20 20H18L14 24V20H12C10.8954 20 10 19.1046 10 18V12Z" fill="white"/>
+                <circle cx="14" cy="15" r="1" fill="currentColor"/>
+                <circle cx="18" cy="15" r="1" fill="currentColor"/>
+              </svg>
               ChatBot Pro
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:block">
-              <ul className="flex space-x-8">
-                <li>
-                  <Link
-                    href="/"
-                    className="text-white/90 hover:text-white hover:bg-white/20 px-4 py-2 rounded-full transition-all hover:-translate-y-0.5"
-                  >
-                    홈
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/features"
-                    className="text-white/90 hover:text-white hover:bg-white/20 px-4 py-2 rounded-full transition-all hover:-translate-y-0.5"
-                  >
-                    기능
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/demo"
-                    className="text-white/90 hover:text-white hover:bg-white/20 px-4 py-2 rounded-full transition-all hover:-translate-y-0.5"
-                  >
-                    데모
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/pricing"
-                    className="text-white/90 hover:text-white hover:bg-white/20 px-4 py-2 rounded-full transition-all hover:-translate-y-0.5"
-                  >
-                    가격
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className="text-white/90 hover:text-white hover:bg-white/20 px-4 py-2 rounded-full transition-all hover:-translate-y-0.5"
-                  >
-                    문의
-                  </Link>
-                </li>
-              </ul>
+            <nav className="hidden lg:flex items-center space-x-1">
+              {[
+                { href: '/', label: '홈' },
+                { href: '/features', label: '기능' },
+                { href: '/demo', label: '데모' },
+                { href: '/pricing', label: '가격' },
+                { href: '/contact', label: '문의' },
+              ].map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-stone-600 hover:text-teal-600 px-4 py-2 rounded-xl text-[15px] font-medium transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </nav>
 
             <div className="flex items-center gap-4">
-              {/* Desktop CTA Button */}
               <Link
                 href="/demo"
-                className="hidden lg:block bg-white text-purple-600 px-6 py-2.5 rounded-full font-semibold hover:bg-white/90 hover:shadow-lg transition-all"
+                className="hidden lg:block bg-teal-600 text-white px-6 py-2.5 rounded-full font-semibold hover:bg-teal-700 transition-colors text-sm"
               >
                 무료 체험
               </Link>
 
-              {/* Mobile Hamburger Button */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="lg:hidden p-2"
-                aria-label="Toggle menu"
+                aria-label="메뉴 열기"
               >
                 <div className="w-6 h-5 flex flex-col justify-between">
-                  <span className={`block h-0.5 w-full bg-white transition-all ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-                  <span className={`block h-0.5 w-full bg-white transition-all ${isMenuOpen ? 'opacity-0' : ''}`} />
-                  <span className={`block h-0.5 w-full bg-white transition-all ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+                  <span className={`block h-0.5 w-full bg-stone-700 transition-all ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                  <span className={`block h-0.5 w-full bg-stone-700 transition-all ${isMenuOpen ? 'opacity-0' : ''}`} />
+                  <span className={`block h-0.5 w-full bg-stone-700 transition-all ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
                 </div>
               </button>
             </div>
@@ -108,55 +82,43 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div className="fixed inset-0 z-40 lg:hidden" style={{ top: '70px' }}>
-          <div className="absolute inset-0 bg-purple-900/95 backdrop-blur-xl" onClick={() => setIsMenuOpen(false)}>
+          <div
+            className="absolute inset-0 bg-white"
+            onClick={() => setIsMenuOpen(false)}
+          >
             <nav className="px-6 py-8">
-              <ul className="space-y-4">
-                <li>
-                  <Link href="/" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold text-white hover:text-purple-300 transition-colors py-3">
-                    홈
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/features" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold text-white hover:text-purple-300 transition-colors py-3">
-                    기능
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/demo" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold text-white hover:text-purple-300 transition-colors py-3">
-                    데모
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/pricing" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold text-white hover:text-purple-300 transition-colors py-3">
-                    가격
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="block text-2xl font-bold text-white hover:text-purple-300 transition-colors py-3">
-                    문의
-                  </Link>
-                </li>
+              <ul className="space-y-2">
+                {[
+                  { href: '/', label: '홈' },
+                  { href: '/features', label: '기능' },
+                  { href: '/demo', label: '데모' },
+                  { href: '/pricing', label: '가격' },
+                  { href: '/contact', label: '문의' },
+                ].map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="block text-lg font-semibold text-stone-800 hover:text-teal-600 transition-colors py-3 border-b border-stone-100"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
-              <Link href="/demo" onClick={() => setIsMenuOpen(false)} className="mt-8 block w-full text-center bg-white text-purple-600 px-6 py-4 rounded-full font-bold text-lg hover:bg-white/90 transition-all">
+              <Link
+                href="/demo"
+                onClick={() => setIsMenuOpen(false)}
+                className="mt-8 block w-full text-center bg-teal-600 text-white px-6 py-4 rounded-full font-bold text-lg hover:bg-teal-700 transition-colors"
+              >
                 무료 체험
               </Link>
             </nav>
           </div>
         </div>
       )}
-
-      {/* Progress Bar */}
-      <div className="fixed top-[70px] left-0 right-0 h-1 bg-white/10 z-50">
-        <div
-          className="h-full bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300"
-          style={{
-            width: scrolled ? '30%' : '0%',
-          }}
-        />
-      </div>
     </>
   )
 }
